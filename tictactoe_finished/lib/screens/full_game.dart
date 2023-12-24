@@ -20,26 +20,31 @@ class _TicTacToeState extends State<TicTacToe> {
   // class
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: primaryColor,
-        appBar: AppBar(
-          title: Center(
-            child: Text(
-              "T I C - T A C - T O E",
-              style: googleFontWhite
-            ),
-          ),
+    return WillPopScope( 
+      onWillPop: () async {
+        return false;
+      },
+      child: MaterialApp(
+        home: Scaffold(
           backgroundColor: primaryColor,
-          elevation: 0,
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(flex: 1, child: PlayerScores(game: game)),
-            Expanded(flex: 4, child: GameBoard(game: game, voidCallback: updateBoard)),
-            Expanded(flex: 2, child: ReplayButton(game: game, voidCallback: updateBoard))
-          ],
+          appBar: AppBar(
+            title: Center(
+              child: Text(
+                "T I C - T A C - T O E",
+                style: googleFontWhite
+              ),
+            ),
+            backgroundColor: primaryColor,
+            elevation: 0,
+          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(flex: 1, child: PlayerScores(game: game)),
+              Expanded(flex: 4, child: GameBoard(game: game, voidCallback: updateBoard)),
+              Expanded(flex: 2, child: ReplayButton(game: game, voidCallback: updateBoard))
+            ],
+          ),
         ),
       ),
     );

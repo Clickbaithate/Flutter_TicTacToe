@@ -39,19 +39,19 @@ class Game {
     if (tileValues[0] == tileValues[1] && tileValues[1] == tileValues[2] && tileValues[2] != "") {
       gameFinished = true;
       if (tileValues[0] == "X") {xWon = true; xScore++;} 
-      else {oWon = false; oScore++;}
+      else {oWon = true; oScore++;}
       tileColors[0] = accentColor; tileColors[1] = accentColor; tileColors[2] = accentColor;
     }
     else if (tileValues[3] == tileValues[4] && tileValues[4] == tileValues[5] && tileValues[5] != "") {
       gameFinished = true;
       if (tileValues[3] == "X") {xWon = true; xScore++;} 
-      else {oWon = false; oScore++;}
+      else {oWon = true; oScore++;}
       tileColors[3] = accentColor; tileColors[4] = accentColor; tileColors[5] = accentColor;
     }
     else if (tileValues[6] == tileValues[7] && tileValues[7] == tileValues[8] && tileValues[8] != "") {
       gameFinished = true;
       if (tileValues[6] == "X") {xWon = true; xScore++;} 
-      else {oWon = false; oScore++;}
+      else {oWon = true; oScore++;}
       tileColors[6] = accentColor; tileColors[7] = accentColor; tileColors[8] = accentColor;
     }
     // Checking Rows
@@ -60,19 +60,19 @@ class Game {
     else if (tileValues[0] == tileValues[3] && tileValues[3] == tileValues[6] && tileValues[6] != "") {
       gameFinished = true;
       if (tileValues[0] == "X") {xWon = true; xScore++;} 
-      else {oWon = false; oScore++;}
+      else {oWon = true; oScore++;}
       tileColors[0] = accentColor; tileColors[3] = accentColor; tileColors[6] = accentColor;
     }
     else if (tileValues[1] == tileValues[4] && tileValues[4] == tileValues[7] && tileValues[7] != "") {
       gameFinished = true;
       if (tileValues[1] == "X") {xWon = true; xScore++;} 
-      else {oWon = false; oScore++;}
+      else {oWon = true; oScore++;}
       tileColors[1] = accentColor; tileColors[4] = accentColor; tileColors[7] = accentColor;
     }
     else if (tileValues[2] == tileValues[5] && tileValues[5] == tileValues[8] && tileValues[8] != "") {
       gameFinished = true;
       if (tileValues[2] == "X") {xWon = true; xScore++;} 
-      else {oWon = false; oScore++;}
+      else {oWon = true; oScore++;}
       tileColors[2] = accentColor; tileColors[5] = accentColor; tileColors[8] = accentColor;
     }
     // Checking Columns
@@ -81,16 +81,23 @@ class Game {
     else if (tileValues[0] == tileValues[4] && tileValues[4] == tileValues[8] && tileValues[0] != "") {
       gameFinished = true;
       if (tileValues[0] == "X") {xWon = true; xScore++;} 
-      else {oWon = false; oScore++;}
+      else {oWon = true; oScore++;}
       tileColors[0] = accentColor; tileColors[4] = accentColor; tileColors[8] = accentColor;
     }
     else if (tileValues[2] == tileValues[4] && tileValues[4] == tileValues[6] && tileValues[2] != "") {
       gameFinished = true;
       if (tileValues[2] == "X") {xWon = true; xScore++;} 
-      else {oWon = false; oScore++;}
+      else {oWon = true; oScore++;}
       tileColors[2] = accentColor; tileColors[4] = accentColor; tileColors[6] = accentColor;
     }
     // Checking Diagonals
+
+    // no win
+    else {
+      gameFinished = false;
+      xWon = false;
+      oWon = false;
+    }
 
   }
   
@@ -145,6 +152,8 @@ class Game {
       return "Player O Wins! ${victoryEmojis[randomInt]}";
     else if (!hasGameStarted())
       return "Let's Play! 😡";
+    else if (xWon == false && oWon == false && hasGameFinished())
+      return "No One Won! 😡";
     else
       return "Game Has Started! 😼";
   }
